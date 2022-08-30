@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekseatWitchSaga", "GeekseatWitchSaga\GeekseatWitchSaga.csproj", "{78B28D57-79C6-4800-9D31-055B619A3200}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestGeekseatWitchSaga", "UnitTestGeekseatWitchSaga\UnitTestGeekseatWitchSaga.csproj", "{59A310D4-A937-4FF9-BD7B-7E2DB1E162D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{78B28D57-79C6-4800-9D31-055B619A3200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78B28D57-79C6-4800-9D31-055B619A3200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78B28D57-79C6-4800-9D31-055B619A3200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A310D4-A937-4FF9-BD7B-7E2DB1E162D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A310D4-A937-4FF9-BD7B-7E2DB1E162D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A310D4-A937-4FF9-BD7B-7E2DB1E162D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A310D4-A937-4FF9-BD7B-7E2DB1E162D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
