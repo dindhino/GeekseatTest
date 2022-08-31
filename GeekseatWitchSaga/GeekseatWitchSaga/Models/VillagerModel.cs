@@ -20,4 +20,9 @@ namespace GeekseatWitchSaga.Models
         [Display(Name = "Year of Death")]
         public int iYear { get; set; }
     }
+
+    public interface IVillager
+    {
+        decimal GetAverageNumberOfKilledVillager();
+    }
 }

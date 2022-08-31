@@ -10,7 +10,7 @@ using GeekseatWitchSaga.Models;
 
 namespace GeekseatWitchSaga.Controllers
 {
-    public class VillagerController : Controller
+    public class VillagerController : Controller, IVillager
     {
         private readonly GeekseatWitchSagaContext _context;
 
@@ -22,6 +22,7 @@ namespace GeekseatWitchSaga.Controllers
         // GET: Villager
         public async Task<IActionResult> Index()
         {
+            ViewData["AverageNumber"] = GetAverageNumberOfKilledVillager();
             return View(await _context.VillagerData.ToListAsync());
         }
 
@@ -148,6 +149,53 @@ namespace GeekseatWitchSaga.Controllers
         private bool VillagerDataExists(int id)
         {
             return _context.VillagerData.Any(e => e.ID == id);
+        }
+
+        public decimal GetAverageNumberOfKilledVillager()
+        {
+            long totalKilled = 0;
+            long counter = 0;
+            foreach(var villagerData in _context.VillagerData)
+            {
+                int iBornOnYear = villagerData.iYear - villagerData.iAge;
+                if (iBornOnYear < 0)
+                    return -1m;
+
+                totalKilled += GetNumberOfKilledVillagerInYear(iBornOnYear);
+                counter++;
+            }
+            if (counter == 0)
+                return -1m;
+            else
+                return (decimal)totalKilled/counter;
+        }
+
+        Dictionary<int, long> _memoryOfKilledVillager = new Dictionary<int, long>();
+        public long GetNumberOfKilledVillagerInYear(int iBornOnYear)
+        {
+            if (_memoryOfKilledVillager.ContainsKey(iBornOnYear))
+                return _memoryOfWitchRule[iBornOnYear];
+
+            var value = WitchRules(iBornOnYear + 2) - 1;
+            _memoryOfKilledVillager[iBornOnYear] = value;
+
+            return value;
+        }
+
+        Dictionary<int, long> _memoryOfWitchRule = new Dictionary<int, long>() { { 0, 0 }, { 1, 1 } };
+        public long WitchRules(int n)
+        {
+            if (n < 0)
+                return 0;
+
+            if (_memoryOfWitchRule.ContainsKey(n))
+                return _memoryOfWitchRule[n];
+
+            var value = WitchRules(n - 1) + WitchRules(n - 2);
+
+            _memoryOfWitchRule[n] = value;
+
+            return value;
         }
     }
 }

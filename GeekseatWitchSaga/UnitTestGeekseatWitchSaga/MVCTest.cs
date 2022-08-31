@@ -27,11 +27,12 @@ namespace UnitTestGeekseatWitchSaga
             var villagerList = Enumerable.Range(1, 2)
                                 .Select(i => new VillagerData
                                 {
+                                    ID = i,
                                     iAge = 10,
                                     iYear = 10 + (2 * i)
                                 });
             context.VillagerData.AddRange(villagerList);
-            int changed = context.SaveChanges();
+            var changed = context.SaveChangesAsync();
 
             _geekseatWitchSagaContext = context;
         }
@@ -60,6 +61,13 @@ namespace UnitTestGeekseatWitchSaga
             var model = (VillagerData)((ViewResult)result).Model;
             Assert.Equal(10, model.iAge);
             Assert.Equal(14, model.iYear);
+        }
+
+        [Fact]
+        public void GetAverageNumberOfKilledVillager_Result_4_5()
+        {
+            var controller = new VillagerController(_geekseatWitchSagaContext);
+            Assert.Equal(4.5m, controller.GetAverageNumberOfKilledVillager());
         }
     }
 }
